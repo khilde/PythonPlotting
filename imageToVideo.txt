@@ -1,0 +1,2 @@
+ffmpeg -framerate 60 -i temp%00d.png -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p atemp.mp4
+ffmpeg -framerate 20 -i temp%00d.png -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p atemp.mp4
