@@ -103,7 +103,7 @@ tree.Branch("offset", offset,'offset/F')
 tree.Branch("length", length, 'length/F')
 
 openedFile.close()
-openedFile=open("firstChicaneL_A_D.txt",'r')
+openedFile=open("InjectBeam/firstChicaneL_A_D_1626187056.txt",'r')
 
 lines=openedFile.readlines()
 for line in lines:
