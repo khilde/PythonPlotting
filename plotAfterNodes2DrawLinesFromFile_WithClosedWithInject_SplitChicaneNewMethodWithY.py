@@ -37,18 +37,24 @@ parser.add_argument("--markerSize",type=float, dest='markerSize', default=".25",
 parser.add_argument("--markerStyle",type=int, dest='markerStyle', default="8", help="style of markers in graph")
 parser.add_argument("--drawLine", type=int, dest='drawLine', default=0, help="which section of graphic we are in")
 parser.add_argument("--stripper1Location", type=int, dest='stripper1Location', default=0, help="what slot stripper 1 magnet is in")
+parser.add_argument("--stripper2Location", type=int, dest='stripper2Location', default=0, help="what slot stripper 2 magnet is in")
+parser.add_argument("--stripper1LocationMax", type=int, dest='stripper1LocationMax', default=0, help="Max NParts for stripper 1")
+parser.add_argument("--stripper2LocationMax", type=int, dest='stripper2LocationMax', default=0, help="Max NParts for stripper 2")
 parser.add_argument("--doAfterStrip", type=bool, dest='doAfterStrip', default=False, help="whether this is right after stripping")
 parser.add_argument("--rangeWindowX", type=float, dest='rangeWindowX', default=-1, help="What the range in xaxis is, negative means use custom")
 parser.add_argument("--rangeWindowY", type=float, dest='rangeWindowY', default=-1, help="What the range in yaxis is, negative means use custom")
 parser.add_argument("--doY", type=int, dest='doY', default=0, help="Draw Y if positive")
 args = parser.parse_args()
-stripper2CurrentLocation=5
+#stripper2CurrentLocation=5
 #beg of drift, beginning of chicane 2,beginning of stripping,end of chicane 2,begginning of chicane 3, end of chicane 3,begginning of chicane 4, end of chicane 4
 
 #drawingArray=[0.,1.51480,2.24164,2.38700,3.27006,4.09536,4.26042,5.35030,6.24055]
 drawingArray=["_beg_","_beg_DH11_","_end_DH11_","_DH11_3pre_","_postS_DH11_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 prefixFileName="emmit"
 stripper1CurrentLocation=args.stripper1Location
+stripper2CurrentLocation=args.stripper2Location
+stripper1Max=args.stripper1LocationMax
+stripper2Max=args.stripper2LocationMax
 #fileNameArray=["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_beg_b23_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 fileNameArray=["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_end_DH11_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 #coordinateArray sorts them based on file name array
@@ -93,7 +99,7 @@ gROOT.SetBatch(True)
 #build drawing array for injected orbit into ring
 for currentFileName in fileNameArray:
 	#print "%s/%s%s%d.txt"%(theDirectoryClosed,prefixFileName,currentFileName,stripper1CurrentLocation)
-	openedFile=open("%s/%s%s%d.txt"%(theDirectoryRing,prefixFileName,currentFileName,stripper1CurrentLocation),'r')
+	openedFile=open("%s/%s%s%d_%d_%d_%d.txt"%(theDirectoryRing,prefixFileName,currentFileName,stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max),'r')
 
 
 
@@ -146,7 +152,7 @@ trackingArrayRing=sorted(trackingArrayRing,key=lambda x: (x[1]))
 #build drawing array for closed Orbit
 for currentFileName in fileNameArray:
 	#print "%s/%s%s%d.txt"%(theDirectoryClosed,prefixFileName,currentFileName,stripper1CurrentLocation)
-	openedFile=open("%s/%s%s%d.txt"%(theDirectoryClosed,prefixFileName,currentFileName,stripper1CurrentLocation),'r')
+	openedFile=open("%s/%s%s%d_%d_%d_%d.txt"%(theDirectoryClosed,prefixFileName,currentFileName,stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max),'r')
 
 
 
@@ -203,7 +209,7 @@ countChicane3=0
 #build drawing array
 for currentFileName in fileNameArray:
 	#print "%s/%s%s%d.txt"%(theDirectory,prefixFileName,currentFileName,stripper1CurrentLocation)
-	openedFile=open("%s/%s%s%d.txt"%(theDirectory,prefixFileName,currentFileName,stripper1CurrentLocation),'r')
+	openedFile=open("%s/%s%s%d_%d_%d_%d.txt"%(theDirectory,prefixFileName,currentFileName,stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max),'r')
 
 
 
@@ -398,7 +404,7 @@ for drift in driftTrackArray:
 for drift in driftTrackArrayClosed:
 	drift.Draw("same")	
 
-theCanvas.Print("%s/tracking_%s_%d.%s"%(theDirectoryClosed,tokenToFind[0],stripper1CurrentLocation,args.imageType))
+theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(theDirectoryClosed,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,args.imageType))
 #theCanvas.Print("%s/%svs%s/temp%d.%s"%(args.directory,theXAxisVariable,theYAxisVariable,counter,args.imageType))
 #theCanvas.SaveAs("temp%d.png"%counter)
 theCanvas.Clear()
