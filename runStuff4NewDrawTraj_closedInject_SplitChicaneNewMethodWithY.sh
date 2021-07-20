@@ -5,12 +5,12 @@ echo "Hello World"
 #directory is for injectbeam wastebeam
 #directory2 is for closed beam
 #directory3 is injectbeam ring
-directory=WasteBeamSplitGeneralNewStripperChicaneFieldAddedCleanNewTestY_Inject3
-directory2=WasteBeamSplitGeneralClosedBeamNewY_Inject3
-directory3=InjectBeam3
+directory=WasteBeamSplitGeneralNewStripperChicaneFieldAddedCleanNewTestY_Inject3c_ReverseBoth
+directory2=WasteBeamSplitGeneralClosedBeamNewY_Inject3c_ReverseBoth
+directory3=InjectBeam3c_ReverseBoth
 #stripperLocation=(0 1 2 3 4 5 6)
 stripperLocation=(1)
-stripperLocation2=(-1 0)
+stripperLocation2=(-1)
 stripperMax1=1
 stripperMax2=0
 

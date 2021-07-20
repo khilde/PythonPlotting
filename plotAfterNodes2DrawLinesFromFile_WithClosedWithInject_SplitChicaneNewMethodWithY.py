@@ -389,10 +389,16 @@ septumAngle=3*TMath.Pi()/180.
 #m
 septumStart=.113
 septumWidth=.2762
+
+septumWidthY=.07
+septumStartY=.046-septumWidthY/2.
 #mm
 #septumStart=113
 #septumWidth=276.2
-wasteSeptum=TLine(Length/Length,midLine*(1+0.5*septumStart*1000./theMax),(Length-TMath.Tan(septumAngle)*septumWidth)/Length,midLine*(1+0.5*(septumStart+septumWidth)*1000./theMax))
+if doY:
+	wasteSeptum=TLine(Length/Length,midLine*(1+0.5*septumStartY*1000./theMax),Length/Length,midLine*(1+0.5*(septumStartY+septumWidthY)*1000./theMax))
+else:
+	wasteSeptum=TLine(Length/Length,midLine*(1+0.5*septumStart*1000./theMax),(Length-TMath.Tan(septumAngle)*septumWidth)/Length,midLine*(1+0.5*(septumStart+septumWidth)*1000./theMax))
 wasteSeptum.SetNDC()	
 wasteSeptum.SetLineWidth(2)
 wasteSeptum.SetLineColor(kGreen)
