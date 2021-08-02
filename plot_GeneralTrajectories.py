@@ -29,7 +29,7 @@ parser.add_argument("--directoryOutput", dest='directoryOutput', default="output
 parser.add_argument("--directoryWaste", dest='directoryWaste', default="output5", help="directory to put graphs into")
 parser.add_argument("--directoryClosed", dest='directoryClosed', default="output5", help="directory to put graphs into")
 parser.add_argument("--directoryInjection", dest='directoryInjection', default="output5", help="directory to put graphs into")
-parser.add_argument("--imageType", dest='imageType', default="png", help="what file type to save image as (ie png)")
+parser.add_argument("--imageType", dest='imageType', default="pdf", help="what file type to save image as (ie png)")
 parser.add_argument("--doY", type=int, dest='doY', default=0, help="Draw Y if positive")
 
 parser.add_argument("--configFileName", dest='configFileName', default="ConfigFiles/DefaultConfig.txt", help="info on python plotting configing")
@@ -371,9 +371,9 @@ for currentPart in stripperPositionArray:
 		for drift in driftTrackArrayClosed:
 			drift.Draw("same")	
 		
-		#theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,args.imageType))
-		theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,"png"))
-		theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,"pdf"))
+		theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,args.imageType))
+		#theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,"png"))
+		#theCanvas.Print("%s/tracking_%s_%d_%d_%d_%d.%s"%(args.directoryOutput,tokenToFind[0],stripper1CurrentLocation,stripper2CurrentLocation,stripper1Max,stripper2Max,"pdf"))
 		
 		
 		#theCanvas.Print("%s/%svs%s/temp%d.%s"%(args.directory,theXAxisVariable,theYAxisVariable,counter,args.imageType))
