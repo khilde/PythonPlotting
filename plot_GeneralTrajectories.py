@@ -31,6 +31,7 @@ parser.add_argument("--directoryClosed", dest='directoryClosed', default="output
 parser.add_argument("--directoryInjection", dest='directoryInjection', default="output5", help="directory to put graphs into")
 parser.add_argument("--imageType", dest='imageType', default="pdf", help="what file type to save image as (ie png)")
 parser.add_argument("--doY", type=int, dest='doY', default=0, help="Draw Y if positive")
+parser.add_argument("--offsetStripper", type=int, dest='offsetStripper', default=0, help="Offset Dipole Strippers from center if positive")
 
 parser.add_argument("--configFileName", dest='configFileName', default="ConfigFiles/DefaultConfig.txt", help="info on python plotting configing")
 
@@ -56,6 +57,20 @@ foil2Location=plottingSettingsDictionary.getValue("foil2Location")
 #drawingArray=[0.,1.51480,2.24164,2.38700,3.27006,4.09536,4.26042,5.35030,6.24055]
 #prefixFileName="emmit"
 
+
+doY=False
+if args.doY >0 :
+	doY=True
+tokenToFind="x avg"
+positionTokenToFind=0
+if doY:
+	tokenToFind="y avg"
+	positionTokenToFind=1
+offsetStripper=False	
+if args.offsetStripper >0 :
+	offsetStripper=True
+if not os.path.isdir(args.directoryOutput):
+    os.mkdir(args.directoryOutput)	
 #fileNameArray=["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_beg_b23_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 #fileNameArray=["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_end_DH11_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 #coordinateArray sorts them based on file name array
@@ -79,18 +94,10 @@ for currentPart in stripperPositionArray:
 		theDirectoryInjection=args.directoryInjection
 		
 		
-		doY=False
-		if args.doY >0 :
-			doY=True
-		tokenToFind="x avg"
-		positionTokenToFind=0
-		if doY:
-			tokenToFind="y avg"
-			positionTokenToFind=1
+
     
 		#fileName=sys.argv[1]
-		if not os.path.isdir(args.directoryOutput):
-		    os.mkdir(args.directoryOutput)
+
 		    #print("%s directory does not exist"%(args.directory))
 		    #sys.exit(0)
 		theNaming=["X","PX","Y","PY","Z","PZ","S"]
@@ -257,6 +264,16 @@ for currentPart in stripperPositionArray:
 		#["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_end_DH11_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
 		
 		#print "%f"%drift1.GetX2()
+		theMax=-1.
+		for element in coordinateArrayWaste:
+			#print element
+			for index in range(len(coordinateArrayWaste[element])):
+				if abs(coordinateArrayWaste[element][index][0])>theMax:
+					theMax=abs(coordinateArrayWaste[element][index][0])
+		print "theMax= ", theMax
+		theMax=314
+		print "theMax=%d"%theMax
+		
 		haventDrawnYet=True
 		theLines=[]
 		theBoxes=[]
@@ -277,7 +294,18 @@ for currentPart in stripperPositionArray:
 				theBoxes.append(aBox((coordinateArrayWaste[fileNamePrefix[0]+currentFileName][0][1]-referenceLengthWaste)/Length,midLine/2.,(coordinateArrayWaste[fileNamePrefix[1]+currentFileName][len(coordinateArrayWaste[fileNamePrefix[1]+currentFileName])-1][1]-referenceLengthWaste)/Length,midLine*3./2.))
 			#draw stripper
 			elif "Dipole" in currentFileName:
-				theBoxes.append(aBox((coordinateArrayWaste[fileNamePrefix[0]+currentFileName][0][1]-referenceLengthWaste)/Length,midLine/1.5,(coordinateArrayWaste[fileNamePrefix[1]+currentFileName][len(coordinateArrayWaste[fileNamePrefix[1]+currentFileName])-1][1]-referenceLengthWaste)/Length,midLine*2./1.5))
+				firstX=1.5
+				secondX=2./1.5			
+				if offsetStripper and doY:
+					firstX=1+0.5*56/theMax
+					secondX=1+0.5*66/theMax						
+				elif offsetStripper:
+					firstX=1+0.5*130/theMax
+					secondX=2./1.5						
+				
+				#theOG 
+				#theBoxes.append(aBox((coordinateArrayWaste[fileNamePrefix[0]+currentFileName][0][1]-referenceLengthWaste)/Length,midLine/1.5,(coordinateArrayWaste[fileNamePrefix[1]+currentFileName][len(coordinateArrayWaste[fileNamePrefix[1]+currentFileName])-1][1]-referenceLengthWaste)/Length,midLine*2./1.5))
+				theBoxes.append(aBox((coordinateArrayWaste[fileNamePrefix[0]+currentFileName][0][1]-referenceLengthWaste)/Length,midLine*firstX,(coordinateArrayWaste[fileNamePrefix[1]+currentFileName][len(coordinateArrayWaste[fileNamePrefix[1]+currentFileName])-1][1]-referenceLengthWaste)/Length,midLine*secondX))
 			
 		#draw foil2
 		foil2=TLine((coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*.4,(coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*1.6)
@@ -289,15 +317,7 @@ for currentPart in stripperPositionArray:
 
 		foil2.Draw("same")
 		
-		theMax=-1.
-		for element in coordinateArrayWaste:
-			#print element
-			for index in range(len(coordinateArrayWaste[element])):
-				if abs(coordinateArrayWaste[element][index][0])>theMax:
-					theMax=abs(coordinateArrayWaste[element][index][0])
-		print "theMax= ", theMax
-		theMax=314
-		print "theMax=%d"%theMax
+
 		#theOffsetForClosed=coordinateArrayClosed["_beg_"][0][1]-(2.24807-1.514801482455)
 		#theOffsetForClosed=referenceLengthClosed
 		driftTrackArrayClosed=[]	
