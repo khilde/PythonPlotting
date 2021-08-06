@@ -32,6 +32,8 @@ parser.add_argument("--directoryInjection", dest='directoryInjection', default="
 parser.add_argument("--imageType", dest='imageType', default="pdf", help="what file type to save image as (ie png)")
 parser.add_argument("--doY", type=int, dest='doY', default=0, help="Draw Y if positive")
 parser.add_argument("--offsetStripper", type=int, dest='offsetStripper', default=0, help="Offset Dipole Strippers from center if positive")
+parser.add_argument("--offsetFoil", type=int, dest='offsetFoil', default=0, help="Offset secondary foil from center if positive")
+
 
 parser.add_argument("--configFileName", dest='configFileName', default="ConfigFiles/DefaultConfig.txt", help="info on python plotting configing")
 
@@ -69,6 +71,9 @@ if doY:
 offsetStripper=False	
 if args.offsetStripper >0 :
 	offsetStripper=True
+offsetFoil=False	
+if args.offsetFoil >0 :
+	offsetFoil=True	
 if not os.path.isdir(args.directoryOutput):
     os.mkdir(args.directoryOutput)	
 #fileNameArray=["_beg_","_beg_DH11_","_DH11_3pre_","_postS_DH11_","_beg_b23_","_beg_DH12_","_DH12_3pre_","_postS_DH12_","_end_DH12_","_beg_DH13_","_end_DH13_","_end_DB_WASTE_"]
@@ -297,8 +302,8 @@ for currentPart in stripperPositionArray:
 				firstX=1.5
 				secondX=2./1.5			
 				if offsetStripper and doY:
-					firstX=1+0.5*56/theMax
-					secondX=1+0.5*66/theMax						
+					firstX=1+0.5*36/theMax
+					secondX=1+0.5*56/theMax						
 				elif offsetStripper:
 					firstX=1+0.5*130/theMax
 					secondX=2./1.5						
@@ -308,8 +313,17 @@ for currentPart in stripperPositionArray:
 				theBoxes.append(aBox((coordinateArrayWaste[fileNamePrefix[0]+currentFileName][0][1]-referenceLengthWaste)/Length,midLine*firstX,(coordinateArrayWaste[fileNamePrefix[1]+currentFileName][len(coordinateArrayWaste[fileNamePrefix[1]+currentFileName])-1][1]-referenceLengthWaste)/Length,midLine*secondX))
 			
 		#draw foil2
-		foil2=TLine((coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*.4,(coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*1.6)
-		#foil2=TLine(coordinateArray["_beg_DH13_"][0][1]/Length,midLine*.4,coordinateArray["_beg_DH13_"][0][1]/Length,midLine*1.6)
+		#OG
+		#foil2=TLine((coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*.4,(coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*1.6)
+		firstX=.4
+		secondX=1.6			
+		if offsetFoil and doY:
+			firstX=1+0.5*36/theMax
+			#secondX=1+0.5*56/theMax						
+		elif offsetFoil:
+			firstX=1+0.5*100/theMax
+			secondX=1.6		
+		foil2=TLine((coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*firstX,(coordinateArrayWaste[fileNamePrefix[0]+foil2Location][0][1]-referenceLengthWaste)/Length,midLine*secondX)
 			
 		foil2.SetNDC()
 		foil2.SetLineWidth(2)
