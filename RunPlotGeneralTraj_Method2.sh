@@ -3,7 +3,8 @@ echo "Hello World"
 configFileName=ConfigFiles/DefaultConfig_strippersNotClosed.txt
 directoryOutputSuffix=Plots
 inputDirectoryPrefix=Method2_strippersNotClosed
-magneticFieldFiles=(UpUp DownDown UpDown DownUp LeftLeft LeftRight)
+#magneticFieldFiles=(UpUp DownDown UpDown DownUp LeftLeft LeftRight)
+magneticFieldFiles=(LeftUp RightUp)
 suffixInjection=InjectBeam_Method2
 suffixWaste=WasteBeam_Method2
 suffixClosed=ClosedBeam_Method2_strippersNotClosed
