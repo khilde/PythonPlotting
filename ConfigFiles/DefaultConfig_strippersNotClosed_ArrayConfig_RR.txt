@@ -1,0 +1,14 @@
+#fileNameArrayInjection=_beg_DB12_Laser_,_beg_DH_A11_,_beg_Dipole_DH_A11_,_end_Dipole_DH_A11_,_end_DH_A11_,_beg_DH_A12_,_beg_Dipole_DH_A12_,_end_Dipole_DH_A12_,_end_DH_A12_,_beg_DH_A13_,_end_DH_A13_,_end_DB_Waste_
+#fileNameArrayWaste=_beg_DB12_Laser_,_beg_DH_A11_,_beg_Dipole_DH_A11_,_end_Dipole_DH_A11_,_end_DH_A11_,_beg_DH_A12_,_beg_Dipole_DH_A12_,_end_Dipole_DH_A12_,_end_DH_A12_,_beg_DH_A13_,_end_DH_A13_,_end_DB_Waste_
+#fileNameArrayClosed=_beg_DB12_,_beg_DH_A11_,_beg_Dipole_DH_A11_,_end_Dipole_DH_A11_,_end_DH_A11_,_beg_DH_A12_,_beg_Dipole_DH_A12_,_end_Dipole_DH_A12_,_end_DH_A12_,_beg_DH_A13_,_end_DH_A13_,_end_DB_Waste_
+
+#fileNameArrayInjection=_DB12_Laser_,_DH_A11_,_Dipole_DH_A11_,_DH_A12_,_Dipole_DH_A12_,_DH_A13_,_DB_Waste_
+#fileNameArrayWaste=_DB12_Laser_,_DH_A11_,_Dipole_DH_A11_,_DH_A12_,_Dipole_DH_A12_,_DH_A13_,_DB_Waste_
+#fileNameArrayClosed=_DB12_,_DH_A11_,_Dipole_DH_A11_,_DH_A12_,_Dipole_DH_A12_,_DH_A13_,_DB_Waste_
+
+fileNameArrayInjection=DB12_Laser,DH_A11,Dipole_DH_A11,DB23,DH_A12,Dipole_DH_A12,DB34,DH_A13,DB_Waste
+fileNameArrayWaste=DB12_Laser,DH_A11,Dipole_DH_A11,DB23,DH_A12,Dipole_DH_A12,DB34,DH_A13,DB_Waste
+fileNameArrayClosed=DB12,DH_A11,DB23,DH_A12,DB34,DH_A13,DB_Waste
+
+foil2Location=DH_A13
+
