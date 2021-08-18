@@ -1,14 +1,14 @@
 #!/bin/bash
 echo "Hello World"
-configFileName=ConfigFiles/DefaultConfig_strippersNotClosed_ArrayConfig_ULRU.txt
+configFileName=ConfigFiles/DefaultConfig_strippersNotClosed_ArrayConfig_FoilTest.txt
 directoryOutputSuffix=Plots
-inputDirectoryPrefix=Method2_strippersNotClosed_ArrayConfig_p20_Early_Separate_Horiz
+inputDirectoryPrefix=Method2_strippersNotClosed_ArrayConfig_FoilTest
 #magneticFieldFiles=(UpUp DownDown UpDown DownUp LeftLeft LeftRight)
 #magneticFieldFiles=(RUL LUR)
-magneticFieldFiles=(ULLL URRR)
+magneticFieldFiles=(FoilTest)
 #magneticFieldFiles=(LeftUp RightUp LeftDown RightDown)
-suffixInjection=InjectBeam_Method2_ArrayConfig_FloatLength_p20_1st_2nd_Early
-suffixWaste=WasteBeam_Method2_ArrayConfig_FloatLength_p20_1st_2nd_Early
+suffixInjection=InjectBeam_Method2_ArrayConfig_FloatLength
+suffixWaste=WasteBeam_Method2_ArrayConfig_FloatLength
 suffixClosed=ClosedBeam_Method2_strippersNotClosed_ArrayConfig
 
 offsetStripper=1
