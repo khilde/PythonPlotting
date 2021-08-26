@@ -2,14 +2,15 @@
 echo "Hello World"
 configFileName=ConfigFiles/DefaultConfig_strippersNotClosed_ArrayConfig_ULRU.txt
 directoryOutputSuffix=Plots
-inputDirectoryPrefix=Method4_strippersNotClosed_ArrayConfig
+inputDirectoryPrefix=Method4_strippersNotClosed_ArrayConfig_PPU
 #magneticFieldFiles=(UpUp DownDown UpDown DownUp LeftLeft LeftRight)
 #magneticFieldFiles=(RUL LUR)
-magneticFieldFiles=(ULRD)
+#magneticFieldFiles=(p20_ULRD p30_ULRD p40_ULRD p50_ULRD p60_ULRD p70_ULRD p80_ULRD)
+magneticFieldFiles=(p80_ULRD)
 #magneticFieldFiles=(LeftUp RightUp LeftDown RightDown)
-suffixInjection=InjectBeam_Method4_ArrayConfig_FloatLength_p10
-suffixWaste=WasteBeam_Method4_ArrayConfig_FloatLength_p10
-suffixClosed=ClosedBeam_Method4_strippersNotClosed_ArrayConfig_p10
+suffixInjection=PPU_InjectBeam_Method4_ArrayConfig_FloatLength
+suffixWaste=PPU_WasteBeam_Method4_ArrayConfig_FloatLength
+suffixClosed=PPU_ClosedBeam_Method4_strippersNotClosed_ArrayConfig
 
 offsetStripper=1
 offsetFoil=1
