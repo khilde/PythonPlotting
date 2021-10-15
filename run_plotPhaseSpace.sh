@@ -5,8 +5,8 @@ echo "Hello World"
 filename=(print_beg_DB12_Laser print_beg_Dipole_DH_A11 print_end_Dipole_DH_A11 print_beg_Dipole_DH_A12 print_end_Dipole_DH_A12 print_end_DB_Waste)
 #directory=/home/5rz/PyOrbit/examples-khilde/InjectionRegion/NoMethod_SecondDoneRight_LR
 directory=/home/5rz/PyOrbit/examples-khilde/InjectionRegion/NoMethod_SecondDoneRight
-#folder=(101_1p0_LR 101_p5_011_p5_LR PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_LR PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_LR)
-folder=(101_1p0 101_p5_011_p5 PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_ULRD PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_ULRD)
+#folder=(101_1p0_LR 101_p5_011_p5_LR PPU_InjectBeam_NoMethod_ArrayConfig__Second101_p80_LR PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_LR)
+folder=(101_1p0 101_p5_011_p5 PPU_InjectBeam_NoMethod_ArrayConfig__Second101_p80_ULRD PPU_InjectBeam_NoMethod_ArrayConfig__Second011_p80_ULRD)
 for j in ${folder[@]}
 do
 	for i in ${filename[@]}
